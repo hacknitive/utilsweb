@@ -1,0 +1,15 @@
+/venv/
+/dist/
+/build/
+microsoft_reward_bot.spec
+/.idea/
+/io/cookies/
+/io/exit_status/
+/io/screen_shot/
+/io/downloads/
+/io/history/
+/io/proxies/
+**/__pycache__/**
+desktop.ini
+*.log
+utils_logging/

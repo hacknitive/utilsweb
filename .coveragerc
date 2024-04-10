@@ -1,0 +1,27 @@
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Don't complain if tests don't hit defensive assertion code:
+    raise AssertionError
+    raise NotImplementedError
+
+# Don't complain if non-runnable code isn't run:
+    if 0:
+    if __name__ == .__main__.:
+    if getattr(self, 'swagger_fake_view', False):
+    except Exception:
+    logger.warning(format_exc())
+
+omit =
+    */venv/*
+    */test*.py
+    */test*/*
+
+sort = Cover
+show_missing = True
+
+[run]
+omit =
+    */venv/*
+
+command_line = -m pytest
