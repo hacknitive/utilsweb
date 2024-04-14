@@ -1,2 +1,1 @@
-numpy==1.22.*
-pyvirtualdisplay==2.2
+orjson==3.10.*

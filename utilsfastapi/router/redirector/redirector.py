@@ -1,9 +1,9 @@
 from fastapi.responses import RedirectResponse
 
-from src.setting.setting import FAST_API_APP
+from .router import router
 
 
-@FAST_API_APP.get(
+@router.get(
     path="/",
     include_in_schema=False,
 )

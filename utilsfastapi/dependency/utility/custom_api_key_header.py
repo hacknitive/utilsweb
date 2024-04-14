@@ -5,7 +5,7 @@ from fastapi.openapi.models import APIKey, APIKeyIn
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
 
-from ...utility.get_message import get_message
+from utilsfastapi.utilsfastapi.response.get_message import get_message
 from ...exception_handling import ProjectBaseException
 
 

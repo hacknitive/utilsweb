@@ -6,8 +6,8 @@ from fastapi import status
 
 from src.setting.setting import RUN_MODE, enum
 
-from ..exception_handling import ProjectBaseException
-from ..utility.get_message import get_message
+from utilsfastapi.utilsfastapi.exception_handling import ProjectBaseException
+from utilsfastapi.utilsfastapi.response.get_message import get_message
 
 HTTP_503_SERVICE_UNAVAILABLE = status.HTTP_503_SERVICE_UNAVAILABLE
 ERROR_TEXT = get_message("internal_server_error")
