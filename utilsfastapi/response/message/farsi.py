@@ -15,9 +15,12 @@ MESSAGES = {
     "invalid_token": "توکن داده شده درست (معتبر) نیست!",
     "expired_token": "توکن داده شده منقضی شده است!",
     "invalid_password": "پسورد داده شده معتبر نیست!",
-    "not_allowed": "این اقدام اجازه داده نشده است.",
+    "no_password": "پسورد تغریف نشده است.",
+    "not_allowed": "شما مجاز به انجام این کار نیستید.",
     "unauthorized_user": "کاربر شناسایی نشده است!",
     "user_suspension": "کاربر معلق شده است!",
+    "already_registered": "کاربر قبلا ثبت نام کرده است!",
+    "unregistered_user": "کاربر وجود ندارد!",
 
     # Service Authorization/Authentication
     "realm_not_found": "حوزه" + " '{realm}' " + "پیدا نشد!",
@@ -27,6 +30,7 @@ MESSAGES = {
     "send_otp": "کد پیامکی ارسال شده است!",
     "invalid_otp": "کد وارد شده صحیح نیست. لطفا دوباره تلاش کنید!",
     "time_limit_otp": "کد پیامکی به تازگی ارسال شده است. لطفا" + " '{duration}' " + "بعد تلاش کنید.",
+    "otp_expired": "کد وارد شده منقضی شده است.",
 
     # Server
     "server_error": "خطای غیر منتظره رخ داده است!!! چند دقیقه بعد دوباره تلاش کنید."

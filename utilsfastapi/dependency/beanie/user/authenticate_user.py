@@ -15,7 +15,7 @@ from .find_user_authentication import find_user_authentication
 from .delete_user_authentication import delete_user_authentication
 from .find_user import find_user
 from .update_user_authentication import update_user_authentication
-from ...utility.custom_api_key_header import CustomAPIKeyHeader
+from dms.auth.dependency.custom_api_key_header import CustomAPIKeyHeader
 
 X_USER_TOKEN = CustomAPIKeyHeader(
     name="X-USER-TOKEN",

@@ -6,14 +6,10 @@ from fastapi import (
     Request,
     FastAPI,
 )
-
-try:
-    from utilsconfigloader.utilsconfigloader.utils.enum import EnumRunMode
-except ImportError:
-    from utilsconfigloader.utils.enum import EnumRunMode
+from utilsconfigloader.utilsconfigloader.utils.enum import EnumRunMode
+from utilscommon.utilscommon.exception import ProjectBaseException
 
 from ..response.custom_orjson_response import ProjectJSONResponse as Response
-from .project_base_exception import ProjectBaseException
 from .create_traceback import create_traceback
 
 
