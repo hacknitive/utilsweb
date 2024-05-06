@@ -33,7 +33,7 @@ async def find_service_authentication(
     error = get_message("unauthorized_service")
 
     raise ProjectBaseException(
-        code=HTTP_401_UNAUTHORIZED,
+        status_code=HTTP_401_UNAUTHORIZED,
         success=False,
         data=None,
         error=error,

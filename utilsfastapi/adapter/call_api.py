@@ -37,7 +37,7 @@ async def call_api(
             error = format_exc()
 
         raise ProjectBaseException(
-            code=HTTP_503_SERVICE_UNAVAILABLE,
+            status_code=HTTP_503_SERVICE_UNAVAILABLE,
             success=False,
             data=None,
             error=error,
@@ -48,7 +48,7 @@ async def call_api(
     if raise_:
         if response.status >= 300:
             raise ProjectBaseException(
-                code=result.get("code") or response.status,
+                status_code=result.get("code") or response.status,
                 success=False,
                 data=result.get("data"),
                 error=result.get("message"),

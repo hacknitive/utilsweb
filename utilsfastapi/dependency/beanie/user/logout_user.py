@@ -26,7 +26,7 @@ async def logout_user(token: str = Depends(X_USER_TOKEN)) -> None:
 
         error = get_message("server_error")
         raise ProjectBaseException(
-            code=500,
+            status_code=500,
             success=False,
             data=None,
             error=error,

@@ -30,7 +30,7 @@ def prepare_handler_for_project_base_exception_function(
             request: Request,
             exc: ProjectBaseException
     ) -> Response:
-        if exc.code >= 500:
+        if exc.status_code >= 500:
             if getattr(
                     exc,
                     "log_this_exc",
@@ -43,7 +43,7 @@ def prepare_handler_for_project_base_exception_function(
                 )
                 logger.error(msg=traceback_)
 
-            status_code = exc.code
+            status_code = exc.status_code
             success = False
             data = None
             message = error_text
@@ -54,7 +54,7 @@ def prepare_handler_for_project_base_exception_function(
                 error = exc.error
 
         else:
-            status_code = exc.code
+            status_code = exc.status_code
             success = exc.success
             data = exc.data
             error = exc.error

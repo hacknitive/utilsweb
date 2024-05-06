@@ -1,4 +1,5 @@
 from typing import Optional
+from copy import deepcopy
 
 from pydantic import BaseModel
 from starlette.responses import Response
@@ -45,3 +46,6 @@ class ProjectJSONResponse(Response):
             "data": self.data,
             "error": self.error
         })
+
+    def deep_copy(self):
+        return deepcopy(self)
