@@ -40,7 +40,7 @@ class ProjectJSONResponse(Response):
 
     def prepare_content(self):
         return jsonable_encoder({
-            "code": self.status_code,
+            "status_code": self.status_code,
             "message": self.message,
             "success": self.success,
             "data": self.data,

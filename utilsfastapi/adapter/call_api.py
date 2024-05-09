@@ -3,14 +3,14 @@ from traceback import format_exc
 
 from aiohttp import ClientSession
 from fastapi import status
+from utilsconfigloader.utilsconfigloader.utils.enum import EnumRunMode
 
-from src.setting.setting import RUN_MODE, enum
-
-from utilsfastapi.utilsfastapi.exception_handling import ProjectBaseException
-from utilsfastapi.utilsfastapi.response.get_message import get_message
+from .exception import (
+    Service503Exception,
+    UpperThan300Exception,
+)
 
 HTTP_503_SERVICE_UNAVAILABLE = status.HTTP_503_SERVICE_UNAVAILABLE
-ERROR_TEXT = get_message("internal_server_error")
 
 
 async def call_api(
@@ -19,6 +19,8 @@ async def call_api(
         headers: dict | None = None,
         data: dict | None = None,
         raise_: bool = True,
+        error_message: str = None,
+        run_mode: EnumRunMode = None,
 ) -> Any:
     try:
         async with ClientSession() as session:
@@ -31,28 +33,28 @@ async def call_api(
                 result = await response.json()
 
     except Exception:
-        if RUN_MODE == enum.EnumRunMode.production:
-            error = ERROR_TEXT
+        if run_mode == EnumRunMode.production:
+            error = error_message
         else:
             error = format_exc()
 
-        raise ProjectBaseException(
+        raise Service503Exception(
             status_code=HTTP_503_SERVICE_UNAVAILABLE,
             success=False,
             data=None,
             error=error,
-            message=ERROR_TEXT,
+            message=error_message,
             log_this_exc=True,
         )
 
     if raise_:
         if response.status >= 300:
-            raise ProjectBaseException(
-                status_code=result.get("code") or response.status,
+            raise UpperThan300Exception(
+                status_code=result.get("status_code") or response.status,
                 success=False,
                 data=result.get("data"),
-                error=result.get("message"),
-                message=result.get("message"),
+                error=error_message,
+                message=error_message,
             )
 
     return result
