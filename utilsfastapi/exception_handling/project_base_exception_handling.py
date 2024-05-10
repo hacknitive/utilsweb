@@ -1,4 +1,3 @@
-from typing import Callable
 from traceback import format_exc
 from logging import Logger
 
@@ -17,15 +16,7 @@ def prepare_handler_for_project_base_exception_function(
         fast_api_app: FastAPI,
         logger: Logger,
         run_mode: EnumRunMode,
-        get_message_func: Callable,
-        error_lang: str = 'english',
 ):
-    error_text = get_message_func(
-        message_name="failure_message",
-        message_kwargs=None,
-        language=error_lang,
-    )
-
     async def handler_for_project_base_exception(
             request: Request,
             exc: ProjectBaseException
@@ -46,10 +37,10 @@ def prepare_handler_for_project_base_exception_function(
             status_code = exc.status_code
             success = False
             data = None
-            message = error_text
+            message = exc.message
 
             if run_mode == EnumRunMode.production:
-                error = error_text
+                error = message
             else:
                 error = exc.error
 

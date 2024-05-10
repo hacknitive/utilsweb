@@ -1,4 +1,3 @@
-from typing import Callable
 from logging import Logger
 from traceback import format_exc
 
@@ -21,22 +20,19 @@ def prepare_handler_for_5xx_creator_function(
         fast_api_app: FastAPI,
         logger: Logger,
         run_mode: EnumRunMode,
-        get_message_func: Callable,
-        error_lang: str = 'english',
+        error_text: str,
 ):
-    error_text = get_message_func(
-        message_name="failure_message",
-        message_kwargs=None,
-        language=error_lang,
-    )
-
     def prepare_handler_for_5xx(error: int) -> callable:
         if run_mode == EnumRunMode.production:
             async def handler_for_internal_server_error(
                     request: Request,
                     exc: Exception
             ) -> Response:
-                if getattr(exc, "log_this_exc", True):
+                if getattr(
+                        exc,
+                        "log_this_exc",
+                        True,
+                ):
                     traceback_ = await create_traceback(
                         exc=exc,
                         request=request,
@@ -57,12 +53,17 @@ def prepare_handler_for_5xx_creator_function(
                     request: Request,
                     exc: Exception
             ) -> Response:
-                traceback_ = await create_traceback(exc=exc,
-                                                    request=request,
-                                                    traceback_=format_exc(),
-                                                    )
+                traceback_ = await create_traceback(
+                    exc=exc,
+                    request=request,
+                    traceback_=format_exc(),
+                )
 
-                if getattr(exc, "log_this_exc", True):
+                if getattr(
+                        exc,
+                        "log_this_exc",
+                        True,
+                ):
                     logger.error(msg=traceback_)
 
                 return Response(

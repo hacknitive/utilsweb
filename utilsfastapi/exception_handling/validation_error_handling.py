@@ -4,7 +4,7 @@ from fastapi.exceptions import RequestValidationError
 from src.setting.setting import FAST_API_APP
 
 from utilsfastapi.utilsfastapi.response.custom_orjson_response import ProjectJSONResponse as Response
-from utilsfastapi.utilsfastapi.response.get_message import get_message
+from utilsfastapi.utilsfastapi.response.message.get_message import get_message
 
 HTTP_422_UNPROCESSABLE_ENTITY = status.HTTP_422_UNPROCESSABLE_ENTITY
 

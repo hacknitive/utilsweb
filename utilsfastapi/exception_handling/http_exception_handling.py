@@ -1,4 +1,3 @@
-from typing import Callable
 from logging import Logger
 from traceback import format_exc
 
@@ -11,19 +10,16 @@ from starlette.exceptions import HTTPException as Starlette_exc
 
 from utilsfastapi.utilsfastapi.response.custom_orjson_response import ProjectJSONResponse as Response
 from utilsfastapi.utilsfastapi.exception_handling.create_traceback import create_traceback
+from ..response.message import PreparedMessage as _PreparedMessage
 
 
 def prepare_handler_for_http_exception_function(
         fast_api_app: FastAPI,
         logger: Logger,
-        get_message_func: Callable,
+        prepared_message: _PreparedMessage = _PreparedMessage,
         error_lang: str = 'english',
 ) -> None:
-    error_text = get_message_func(
-        message_name="failure_message",
-        message_kwargs=None,
-        language=error_lang,
-    )
+    error_text = prepared_message.failure_message(language=error_lang)
 
     async def handler_for_http_exception(
             request: Request,

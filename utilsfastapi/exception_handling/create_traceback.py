@@ -8,7 +8,7 @@ async def create_traceback(
 ) -> str:
     status_code = getattr(exc, "status_code", None)
     code = getattr(exc, "code", None)
-    status_code = status_code if status_code else code
+    status_code = status_code or code
 
     success = getattr(exc, "success", None)
     data = getattr(exc, "data", None)
