@@ -8,7 +8,7 @@ from fastapi import (
 )
 
 try:
-    from utilsconfigloader.utilsconfigloader.utils.enum import EnumRunMode
+    from utilscommon.utilscommon.setting import EnumRunMode
 except ImportError:
     from utilsconfigloader.utils.enum import EnumRunMode
 

@@ -3,7 +3,7 @@ from traceback import format_exc
 
 from aiohttp import ClientSession
 from fastapi import status
-from utilsconfigloader.utilsconfigloader.utils.enum import EnumRunMode
+from utilscommon.utilscommon.setting import EnumRunMode
 
 from .exception import (
     Service503Exception,

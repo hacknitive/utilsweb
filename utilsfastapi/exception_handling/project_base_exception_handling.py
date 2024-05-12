@@ -5,7 +5,7 @@ from fastapi import (
     Request,
     FastAPI,
 )
-from utilsconfigloader.utilsconfigloader.utils.enum import EnumRunMode
+from utilscommon.utilscommon.setting import EnumRunMode
 from utilscommon.utilscommon.exception import ProjectBaseException
 
 from ..response.custom_orjson_response import ProjectJSONResponse as Response
