@@ -94,12 +94,12 @@ class Message(_Message):
         'english': "User is suspended!"
     }
 
-    user_already_registered = {
+    already_registered_user = {
         'farsi': "کاربر قبلا ثبت نام کرده است!",
         'english': None
     }
 
-    user_unregistered_user = {
+    unregistered_user = {
         'farsi': "کاربر وجود ندارد!",
         'english': None
     }
