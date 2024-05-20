@@ -17,9 +17,9 @@ def prepare_handler_for_http_exception_function(
         fast_api_app: FastAPI,
         logger: Logger,
         prepared_message: _PreparedMessage = _PreparedMessage,
-        error_lang: str = 'english',
+        error_language: str = 'english',
 ) -> None:
-    error_text = prepared_message.failure_message(language=error_lang)
+    error_text = prepared_message.failure_message(language=error_language)
 
     async def handler_for_http_exception(
             request: Request,

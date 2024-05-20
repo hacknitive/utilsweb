@@ -1,4 +1,7 @@
-from typing import Optional
+from typing import (
+    Optional,
+    Sequence,
+)
 from copy import deepcopy
 
 from pydantic import BaseModel
@@ -17,7 +20,7 @@ class ProjectJSONResponse(Response):
             success: bool,
             message: str = None,
             data: None | dict | list | BaseModel = None,
-            error: str | dict | list | None = None,
+            error: str | dict | list | None | Sequence = None,
 
             headers: Optional[dict[str, str]] = None,
             media_type: Optional[str] = None,

@@ -1,62 +1,87 @@
-from fastapi import Request, status
+from traceback import format_exc
+from re import subn
+from logging import Logger
+
+from fastapi import (
+    FastAPI,
+    Request,
+    status,
+)
 from fastapi.exceptions import RequestValidationError
-
-from src.setting.setting import FAST_API_APP
-
 from utilsfastapi.utilsfastapi.response.custom_orjson_response import ProjectJSONResponse as Response
-from utilsfastapi.utilsfastapi.response.message.get_message import get_message
+
+from ..response.message import PreparedMessage as _PreparedMessage
+from .validation_regex_message_dict import VALIDATION_REGEX_MESSAGE_DICT
+from .validation_error_message_cache import validation_error_message_cache
 
 HTTP_422_UNPROCESSABLE_ENTITY = status.HTTP_422_UNPROCESSABLE_ENTITY
 
 
-@FAST_API_APP.exception_handler(RequestValidationError)
-async def handler_4_validation_error(
-        request: Request,
-        exc: RequestValidationError,
-) -> Response:
-    error = list()
-    exe_error = exc.errors()
-    for i in exe_error:
-        field_name = i["loc"][-1]
+def prepare_handler_for_validation_errors_function(
+        fast_api_app: FastAPI,
+        logger: Logger,
+        prepared_message: _PreparedMessage = _PreparedMessage,
+        error_language: str = 'english',
+):
+    failure_text = prepared_message.failure_message(language=error_language)
 
-        if isinstance(field_name, int):
-            field_name = str(i["loc"][0])
+    async def handler_for_validation_error(
+            request: Request,
+            exc: RequestValidationError,
+    ) -> Response:
+        exe_error = exc.errors()
+        try:
+            for i in exe_error:
+                i['msg'] = translate(
+                    error_msg=i['msg'],
+                    error_language=error_language,
+                    logger=logger,
+                )
+        except Exception:
+            logger.warning(
+                "Exception occurred when translating this error message: %s \n %s",
+                exe_error,
+                format_exc(),
+            )
 
-        error_message = await get_equivalent_error_message(
-            message_name=i["msg"],
-            message_kwargs=None,
-            language="farsi",  # TODO: Hardcode!!!
+        return Response(
+            status_code=HTTP_422_UNPROCESSABLE_ENTITY,
+            success=False,
+            data=None,
+            error=exe_error,
+            message=failure_text,
         )
 
-        error.append({field_name: error_message})
-
-    return Response(
-        status_code=HTTP_422_UNPROCESSABLE_ENTITY,
-        success=False,
-        data=None,
-        error=error,
-        message=get_message(
-            message_name="failure_message",
-            message_kwargs=None,
-            language="farsi",  # TODO: Hardcode!!!
-        )
-    )
+    fast_api_app.exception_handler(RequestValidationError)(handler_for_validation_error)
 
 
-async def get_equivalent_error_message(
-        message_name,
-        message_kwargs: dict | None = None,
-        language: str = "farsi",
-) -> str:
-    if language == "english":
-        return message_name
+def translate(
+        error_msg: str,
+        logger: Logger,
+        error_language: str,
+):
+    cache_key = f"{error_language}_{error_msg}"
+    if cache_key in validation_error_message_cache:
+        return validation_error_message_cache[cache_key]
 
-    try:
-        return get_message(
-            message_name=message_name,
-            message_kwargs=message_kwargs,
-            language=language,
-        )
+    for key, value in VALIDATION_REGEX_MESSAGE_DICT.items():
+        try:
+            output_msg, count = subn(
+                key,
+                value[error_language],
+                error_msg,
+            )
+            if count:
+                validation_error_message_cache[cache_key] = output_msg
+                return output_msg
 
-    except Exception:
-        return message_name
+        except Exception:
+            logger.warning(
+                "Exception occurred when translating by this regex: %s \n %s",
+                key,
+                format_exc(),
+            )
+
+    logger.warning("Cannot find translation for this error message: %s", error_msg)
+
+    return error_msg
