@@ -2,6 +2,11 @@ from .message_class import Message as _Message
 
 
 class Message(_Message):
+    delete_parent = {
+        'farsi': "آیتم داده شده نمیتواند حذف شود، زیرا در {item} استفاده شده است.",
+        'english': "The given item Cannot be deleted, because it is used in {item}!",
+    }
+
     item_not_found = {
         'farsi': "آیتم داده شده" + " '{item}' " + "پیدا نشد!",
         'english': "The given item '{item}' not found!",
@@ -102,6 +107,11 @@ class Message(_Message):
     unregistered_user = {
         'farsi': "کاربر وجود ندارد!",
         'english': None
+    }
+
+    inactive_user = {
+        'farsi': "کاربری شما فعال نشده است. لطفا منتظر تایید ادمین باشید.",
+        'english': "User is inactive! Please wait for admin approval."
     }
 
     # Service Authorization/Authentication
