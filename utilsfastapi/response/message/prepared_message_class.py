@@ -101,12 +101,12 @@ class Message(_Message):
 
     already_registered_user = {
         'farsi': "کاربر قبلا ثبت نام کرده است!",
-        'english': None
+        'english': "User is already registered!"
     }
 
     unregistered_user = {
         'farsi': "کاربر وجود ندارد!",
-        'english': None
+        'english': "User is not registered!"
     }
 
     inactive_user = {
