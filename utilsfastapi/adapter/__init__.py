@@ -1,4 +1,4 @@
-from .call_api import call_api
+from .call_url import call_url
 
 from .exception import (
     Service503Exception,

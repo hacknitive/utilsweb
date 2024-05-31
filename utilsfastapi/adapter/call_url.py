@@ -13,7 +13,7 @@ from .exception import (
 HTTP_503_SERVICE_UNAVAILABLE = status.HTTP_503_SERVICE_UNAVAILABLE
 
 
-async def call_api(
+async def call_url(
         method: str,
         url: str,
         headers: dict | None = None,
