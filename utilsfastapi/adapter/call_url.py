@@ -1,5 +1,6 @@
 from typing import Any
 from traceback import format_exc
+from json import dumps
 
 from aiohttp import ClientSession
 from fastapi import status
@@ -49,12 +50,17 @@ async def call_url(
 
     if raise_:
         if response.status >= 300:
+            if run_mode == EnumRunMode.production:
+                error = error_message
+            else:
+                error = await response.text()
+
             raise UpperThan300Exception(
                 status_code=result.get("status_code") or response.status,
                 success=False,
                 data=result.get("data"),
-                error=error_message,
-                message=error_message,
+                error=error,
+                message=error,
             )
 
     return result
