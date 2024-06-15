@@ -21,6 +21,8 @@ async def call_api(
         raise_: bool = True,
         error_message: str = None,
         run_mode: EnumRunMode = None,
+        verify_ssl: bool=False,
+        read_text: bool=False,
 ) -> Any:
     try:
         async with ClientSession() as session:
@@ -28,9 +30,13 @@ async def call_api(
                     method=method,
                     url=url,
                     json=data,
-                    headers=headers
+                    headers=headers,
+                    verify_ssl=verify_ssl,
             ) as response:
-                result = await response.json()
+                if read_text:
+                    result = await response.text()
+                else:
+                    result = await response.json()
 
     except Exception:
         if run_mode == EnumRunMode.production:
