@@ -13,11 +13,11 @@ from .exception import (
 HTTP_503_SERVICE_UNAVAILABLE = status.HTTP_503_SERVICE_UNAVAILABLE
 
 
-async def call_api(
+async def call_url(
         method: str,
         url: str,
         headers: dict | None = None,
-        data: dict | None = None,
+        json: dict | None = None,
         raise_: bool = True,
         error_message: str = None,
         run_mode: EnumRunMode = None,
@@ -29,7 +29,7 @@ async def call_api(
             async with session.request(
                     method=method,
                     url=url,
-                    json=data,
+                    json=json,
                     headers=headers,
                     verify_ssl=verify_ssl,
             ) as response:
