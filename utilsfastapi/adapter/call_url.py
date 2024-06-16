@@ -18,11 +18,12 @@ async def call_url(
         url: str,
         headers: dict | None = None,
         json: dict | None = None,
+        data: Any = None,
         raise_: bool = True,
         error_message: str = None,
         run_mode: EnumRunMode = None,
-        verify_ssl: bool=False,
-        read_text: bool=False,
+        verify_ssl: bool = False,
+        read_text: bool = False,
 ) -> Any:
     try:
         async with ClientSession() as session:
@@ -30,6 +31,7 @@ async def call_url(
                     method=method,
                     url=url,
                     json=json,
+                    data=data,
                     headers=headers,
                     verify_ssl=verify_ssl,
             ) as response:
