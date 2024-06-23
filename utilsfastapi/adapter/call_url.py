@@ -56,12 +56,17 @@ async def call_url(
         )
 
     if raise_:
+        if run_mode == EnumRunMode.production:
+            error = error_message
+        else:
+            error = result or format_exc()
+
         if response.status >= 300:
             raise UpperThan300Exception(
                 status_code=result.get("status_code") or response.status,
                 success=False,
-                data=result.get("data"),
-                error=error_message,
+                data=None,
+                error=error,
                 message=error_message,
             )
 
