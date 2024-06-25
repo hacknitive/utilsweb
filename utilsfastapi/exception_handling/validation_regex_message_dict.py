@@ -255,7 +255,8 @@ VALIDATION_REGEX_MESSAGE_DICT = {
         'farsi': r"متن میتواند حداکثر \g<length> حرف داشته باشد.",
     },
     r'^String should match pattern (?P<pattern>.+)$': {
-        'farsi': r"متن باید متناسب با این الگو باشد: \g<pattern>",
+        # 'farsi': r"متن باید متناسب با این الگو باشد: \g<pattern>",
+        'farsi': r"الگوی داده شده مورد قبول نمی باشد.",
     },
 
 }
