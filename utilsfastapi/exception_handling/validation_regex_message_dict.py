@@ -258,5 +258,8 @@ VALIDATION_REGEX_MESSAGE_DICT = {
         # 'farsi': r"متن باید متناسب با این الگو باشد: \g<pattern>",
         'farsi': r"الگوی داده شده مورد قبول نمی باشد.",
     },
+    r'^Input should be a valid date or datetime, input is too short$': {
+        'farsi': r"مقدار داده شده یک مقدار معتبر تاریخ و با تاریخ-زمان نیست، مقدار داده شده کوتاه است.",
+    },
 
 }
