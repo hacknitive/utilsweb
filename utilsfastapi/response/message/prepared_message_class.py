@@ -4,7 +4,7 @@ from .message_class import Message as _Message
 class Message(_Message):
     delete_parent = {
         'farsi': "آیتم داده شده نمیتواند حذف شود، زیرا در {item} استفاده شده است.",
-        'english': "The given item Cannot be deleted, because it is used in {item}!",
+        'english': "The given item cannot be deleted, because it is used in {item}!",
     }
 
     item_not_found = {
