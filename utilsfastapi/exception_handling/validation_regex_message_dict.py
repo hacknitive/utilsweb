@@ -261,5 +261,8 @@ VALIDATION_REGEX_MESSAGE_DICT = {
     r'^Input should be a valid date or datetime, input is too short$': {
         'farsi': r"مقدار داده شده یک مقدار معتبر تاریخ و با تاریخ-زمان نیست، مقدار داده شده کوتاه است.",
     },
+    r'^Input should be a valid integer, unable to parse string as an integer$': {
+        'farsi': r"مقدار داده شده عدد نیست.",
+    },
 
 }
