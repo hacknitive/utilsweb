@@ -262,7 +262,14 @@ VALIDATION_REGEX_MESSAGE_DICT = {
         'farsi': r"مقدار داده شده یک مقدار معتبر تاریخ و با تاریخ-زمان نیست، مقدار داده شده کوتاه است.",
     },
     r'^Input should be a valid integer, unable to parse string as an integer$': {
+        'farsi': r"مقدار داده شده عدد نیست، بلکه متن است.",
+    },
+    r'^Input should be a valid string$': {
+        'farsi': r"مقدار داده شده مقدار معتبر متنی نیست.",
+    },
+    r'^Input should be a valid integer$': {
         'farsi': r"مقدار داده شده عدد نیست.",
     },
-
 }
+# Input should be 'PDF', 'XLS', 'CSV', 'DOC', 'PPT', 'TXT', 'RAR', 'ZIP', 'JSON', 'MPEG', 'MP4', 'MP3' or 'WAV'"
+# TODO: implement in a way that this custome messages can be added
