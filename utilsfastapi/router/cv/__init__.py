@@ -21,8 +21,6 @@ async def fetch() -> JsonResponse:
             'name': "Reza Aghamohammadi (ragham)",
             'email': "re.agha.mo@gmail.com",
             'phone': "+989376478609",
-            "project_name": "Data Management System (D.M.S)",
-            "role": "Backend Developer",
-            "starts_at": "2024-04-13",
+            "role": "Backend Developer & Devops",
         }
     })
