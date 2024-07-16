@@ -10,7 +10,7 @@ from fastapi import (
 try:
     from utilscommon.utilscommon.setting import EnumRunMode
 except ImportError:
-    from utilsconfigloader.utils.enum import EnumRunMode
+    from utilscommon.utilscommon.setting import EnumRunMode
 
 from ..response.custom_orjson_response import ProjectJSONResponse as Response
 from .create_traceback import create_traceback
