@@ -32,6 +32,7 @@ def prepare_handler_for_validation_errors_function(
         exe_error = exc.errors()
         try:
             for i in exe_error:
+                i['orginal_msg'] = i['msg']
                 i['msg'] = translate(
                     error_msg=i['msg'],
                     error_language=error_language,
@@ -83,5 +84,11 @@ def translate(
             )
 
     logger.warning("Cannot find translation for this error message: %s", error_msg)
+
+    try:
+        with open("cannot_translate.txt", "a", encoding='utf-8') as handler:
+            handler.write(f"{error_msg}\n")
+    except Exception:
+        logger.warning(format_exc())
 
     return error_msg

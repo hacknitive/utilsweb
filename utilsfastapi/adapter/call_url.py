@@ -19,9 +19,12 @@ async def call_url(
         url: str,
         headers: dict | None = None,
         json: dict | None = None,
+        data: Any = None,
         raise_: bool = True,
         error_message: str = None,
         run_mode: EnumRunMode = None,
+        verify_ssl: bool = False,
+        read_text: bool = False,
 ) -> Any:
     try:
         async with ClientSession() as session:
@@ -29,9 +32,14 @@ async def call_url(
                     method=method,
                     url=url,
                     json=json,
-                    headers=headers
+                    data=data,
+                    headers=headers,
+                    verify_ssl=verify_ssl,
             ) as response:
-                result = await response.json()
+                if read_text:
+                    result = await response.text()
+                else:
+                    result = await response.json()
 
     except Exception:
         if run_mode == EnumRunMode.production:
@@ -53,14 +61,14 @@ async def call_url(
             if run_mode == EnumRunMode.production:
                 error = error_message
             else:
-                error = await response.text()
+                error = result
 
             raise UpperThan300Exception(
                 status_code=result.get("status_code") or response.status,
                 success=False,
-                data=result.get("data"),
+                data=None,
                 error=error,
-                message=error,
+                message=error_message,
             )
 
     return result
