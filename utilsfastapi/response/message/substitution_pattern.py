@@ -1,1 +1,0 @@
-SUBSTITUTION_PATTERN = r"\{[^\{\}]+\}"
