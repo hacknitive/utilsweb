@@ -1,0 +1,4 @@
+orjson>=3.10
+aiohttp>=3.9
+fastapi>=0.110
+httptools

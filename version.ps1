@@ -54,5 +54,7 @@ Write-Host "git push --tags github master"
 git push --tags github master
 Write-Host "git push --tags gitlab master"
 git push --tags gitlab master
+Write-Host "git push --tags origin master"
+git push --tags origin master
 
 Write-Host "Version updated to $newVersion and pushed to the server."
