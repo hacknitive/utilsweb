@@ -1,2 +1,2 @@
-orjson==3.10.*
-aiohttp==3.9.*
+orjson>=3.10
+aiohttp>=3.9
