@@ -1,4 +1,4 @@
-from utilscommon.utilscommon.exception import ProjectBaseException
+from utilscommon.exception import ProjectBaseException
 
 
 class Service503Exception(ProjectBaseException):

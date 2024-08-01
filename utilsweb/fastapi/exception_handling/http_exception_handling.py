@@ -8,8 +8,8 @@ from fastapi import (
 from fastapi.exceptions import HTTPException
 from starlette.exceptions import HTTPException as Starlette_exc
 
-from utilsfastapi.utilsfastapi.response.custom_orjson_response import ProjectJSONResponse as Response
-from utilsfastapi.utilsfastapi.exception_handling.create_traceback import create_traceback
+from utilsweb.fastapi.response.custom_orjson_response import ProjectJSONResponse as Response
+from utilsweb.fastapi.exception_handling.create_traceback import create_traceback
 from ..response.message import PreparedMessage as _PreparedMessage
 
 

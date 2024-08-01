@@ -8,7 +8,7 @@ from fastapi import (
     status,
 )
 from fastapi.exceptions import RequestValidationError
-from utilsfastapi.utilsfastapi.response.custom_orjson_response import ProjectJSONResponse as Response
+from utilsweb.fastapi.response.custom_orjson_response import ProjectJSONResponse as Response
 
 from ..response.message import PreparedMessage as _PreparedMessage
 from .validation_regex_message_dict import VALIDATION_REGEX_MESSAGE_DICT

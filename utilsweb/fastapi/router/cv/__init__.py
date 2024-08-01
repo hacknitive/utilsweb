@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from utilsfastapi.utilsfastapi.response.custom_orjson_response import ProjectJSONResponse as JsonResponse
+from utilsweb.fastapi.response.custom_orjson_response import ProjectJSONResponse as JsonResponse
 
 router = APIRouter(
     prefix='/raghamCv/sWSj4PT38h/gUPBq5DKaC/YGLLlLHax1',

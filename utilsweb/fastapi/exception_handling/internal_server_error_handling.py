@@ -8,9 +8,9 @@ from fastapi import (
 )
 
 try:
-    from utilscommon.utilscommon.setting import EnumRunMode
+    from utilscommon.setting import EnumRunMode
 except ImportError:
-    from utilscommon.utilscommon.setting import EnumRunMode
+    from utilscommon.setting import EnumRunMode
 
 from ..response.custom_orjson_response import ProjectJSONResponse as Response
 from .create_traceback import create_traceback

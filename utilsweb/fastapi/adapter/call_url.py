@@ -4,7 +4,7 @@ from json import dumps
 
 from aiohttp import ClientSession
 from fastapi import status
-from utilscommon.utilscommon.setting import EnumRunMode
+from utilscommon.setting import EnumRunMode
 
 from .exception import (
     Service503Exception,
