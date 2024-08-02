@@ -13,4 +13,4 @@ microsoft_reward_bot.spec
 desktop.ini
 *.log
 utils_logging/
-utilsdatabase.egg-info
+utilsweb.egg-info
