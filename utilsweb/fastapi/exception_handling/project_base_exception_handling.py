@@ -37,19 +37,19 @@ def prepare_handler_for_project_base_exception_function(
             status_code = exc.status_code
             success = False
             data = None
-            message = exc.message
+            message = str(exc.message) if exc.message else None
 
             if run_mode == EnumRunMode.production:
                 error = message
             else:
-                error = exc.error
+                error = str(exc.error) if exc.error else None
 
         else:
             status_code = exc.status_code
             success = exc.success
             data = exc.data
-            error = exc.error
-            message = exc.message
+            error = str(exc.error) if exc.error else None
+            message = str(exc.message) if exc.message else None
 
         return Response(
             status_code=status_code,

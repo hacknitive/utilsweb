@@ -23,7 +23,7 @@ def prepare_handler_for_validation_errors_function(
         prepared_message: _PreparedMessage = _PreparedMessage,
         error_language: str = 'english',
 ):
-    failure_text = prepared_message.failure_message(language=error_language)
+    failure_text = str(prepared_message.failure_message(language=error_language))
 
     async def handler_for_validation_error(
             request: Request,
