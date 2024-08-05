@@ -12,6 +12,12 @@ FILE_FORMAT_GENERATOR_DICT = {
     'json': generate_json,
 }
 
+FILE_FORMAT_EXTENSION_DICT = {
+    'excel': "xlsx",
+    'csv': 'csv',
+    'json': 'json',
+}
+
 
 def fetch_by_file(
         file_format: LITERAL_FILE_FORMAT,
