@@ -10,7 +10,7 @@ def make_datetime_aware(
         datetime_field_names: Tuple[str, ...],
 ):
     for i in datetime_field_names:
-        if inputs[i]:
+        if inputs.get(i):
             inputs[i] = inputs[i].replace(tzinfo=timezone.utc)
             inputs[i] = inputs[i].replace(microsecond=0)
 
