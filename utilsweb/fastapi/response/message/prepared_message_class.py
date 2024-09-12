@@ -54,7 +54,7 @@ class Message(_Message):
     }
 
     # User Authorization/Authentication
-    not_user = {
+    not_admin_user = {
         'farsi': "شما ادمین نیستید و نمیتوانید به این آدرس" + " '{route}' " + "دسترسی داشته باشید!",
         'english': "You are not admin, so you cannot reach this route '{route}'!",
     }
