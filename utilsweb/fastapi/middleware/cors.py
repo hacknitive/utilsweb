@@ -10,6 +10,8 @@ def prepare_cors_middleware(
         allow_methods: list[str] = ["*"],
         allow_headers: list[str] = ["*"],
         expose_headers: list[str] = ["*"],
+        allow_origin_regex: str | None = None,
+        max_age: int = 600,
 ) -> None:
     app.add_middleware(
         CORSMiddleware,
@@ -18,4 +20,6 @@ def prepare_cors_middleware(
         allow_methods=allow_methods,
         allow_headers=allow_headers,
         expose_headers=expose_headers,
+        allow_origin_regex=allow_origin_regex,
+        max_age=max_age,
     )
