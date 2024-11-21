@@ -2,7 +2,10 @@ from typing import Any
 from traceback import format_exc
 from json import dumps
 
-from aiohttp import ClientSession
+from aiohttp import (
+    ClientSession,
+    ContentTypeError,
+)
 from fastapi import status
 from utilscommon.setting import EnumRunMode
 
@@ -39,9 +42,22 @@ async def call_url(
                 if read_text:
                     result = await response.text()
                 else:
-                    result = await response.json()
+                    try:
+                        result = await response.json()
 
-    except Exception:
+                    except ContentTypeError:                       
+                        raise UpperThan300Exception(
+                            status_code=response.status,
+                            success=False,
+                            data=None,
+                            error=await response.text(),
+                            message=error_message,
+                            log_this_exc=True,
+                        )
+    except UpperThan300Exception:
+        raise
+    
+    except Exception as e:
         if run_mode == EnumRunMode.production:
             error = error_message
         else:
